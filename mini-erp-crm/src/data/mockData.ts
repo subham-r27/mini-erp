@@ -2,15 +2,19 @@ import type {
     Challan,
     Customer,
     Product,
+    Invoice,
     StockMovement,
     User,
   } from "../types";
   
   export const mockUser: User = {
     id: "USR-001",
-    name: "Arjun Mehta",
-    email: "admin@erp.local",
+    name: "Subham Rout",
+    email: "subham@minierp.com",
     role: "ADMIN",
+    status: "ACTIVE",
+    createdAt: "2026-01-10",
+    lastLogin: "2026-08-12 18:42",
   };
   
   export const customers: Customer[] = [
@@ -478,5 +482,97 @@ import type {
       description: "USB-C Hub · 3 units remaining",
       time: "3 hours ago",
       type: "warning",
+    },
+  ];
+
+  export const invoices: Invoice[] = [
+    {
+      id: "INV-001",
+      invoiceNumber: "INV-2026-0001",
+  
+      challanId: "CHL-001",
+      challanNumber: "SC-2026-0001",
+  
+      customerId: "CUS-001",
+      customerName: "Rajesh Kumar",
+      businessName: "RK Electronics",
+  
+      items: [
+        {
+          id: "INV-ITEM-001",
+          productId: "PRD-001",
+          productName: "Wireless Mouse",
+          sku: "WM-1001",
+          unitPrice: 799,
+          quantity: 5,
+          lineTotal: 3995,
+        },
+        {
+          id: "INV-ITEM-002",
+          productId: "PRD-002",
+          productName: "Mechanical Keyboard",
+          sku: "KB-2001",
+          unitPrice: 2499,
+          quantity: 2,
+          lineTotal: 4998,
+        },
+      ],
+  
+      subtotal: 8993,
+      taxRate: 18,
+      taxAmount: 1618.74,
+      grandTotal: 10611.74,
+  
+      status: "ISSUED",
+  
+      createdBy: "Arjun Mehta",
+      createdAt: "2026-08-10 11:45",
+  
+      dueDate: "2026-09-09",
+    },
+  ];
+  export const users: User[] = [
+    {
+      id: "USR-001",
+      name: "Subham Rout",
+      email: "subham@minierp.com",
+      phone: "+91 98765 43210",
+      role: "ADMIN",
+      status: "ACTIVE",
+      lastLogin: "2026-08-12 18:42",
+      createdAt: "2026-01-10",
+    },
+  
+    {
+      id: "USR-002",
+      name: "Rahul Sharma",
+      email: "rahul@minierp.com",
+      phone: "+91 98765 12345",
+      role: "SALES",
+      status: "ACTIVE",
+      lastLogin: "2026-08-12 17:30",
+      createdAt: "2026-02-14",
+    },
+  
+    {
+      id: "USR-003",
+      name: "Arjun Kumar",
+      email: "arjun@minierp.com",
+      phone: "+91 98765 67890",
+      role: "WAREHOUSE",
+      status: "ACTIVE",
+      lastLogin: "2026-08-12 16:12",
+      createdAt: "2026-03-02",
+    },
+  
+    {
+      id: "USR-004",
+      name: "Priya Singh",
+      email: "priya@minierp.com",
+      phone: "+91 98765 11111",
+      role: "ACCOUNTS",
+      status: "INACTIVE",
+      lastLogin: "2026-08-09 10:24",
+      createdAt: "2026-03-20",
     },
   ];

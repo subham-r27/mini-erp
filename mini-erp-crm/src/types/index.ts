@@ -4,6 +4,10 @@ export type UserRole =
   | "WAREHOUSE"
   | "ACCOUNTS";
 
+export type UserStatus =
+  | "ACTIVE"
+  | "INACTIVE";
+
 export type CustomerType =
   | "RETAIL"
   | "WHOLESALE"
@@ -23,13 +27,21 @@ export type StockMovementType =
   | "IN"
   | "OUT";
 
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: UserRole;
-  avatar?: string;
-}
+  export interface User {
+    id: string;
+  
+    name: string;
+    email: string;
+    phone?: string;
+  
+    role: UserRole;
+    status: UserStatus;
+  
+    avatar?: string;
+  
+    lastLogin?: string;
+    createdAt: string;
+  }
 
 export interface FollowUp {
   id: string;
@@ -120,3 +132,47 @@ export interface Product {
     createdAt: string;
     updatedAt?: string;
   }
+
+  export type InvoiceStatus =
+  | "DRAFT"
+  | "ISSUED"
+  | "PAID"
+  | "CANCELLED";
+
+export interface InvoiceItem {
+  id: string;
+
+  productId: string;
+  productName: string;
+  sku: string;
+
+  unitPrice: number;
+  quantity: number;
+  lineTotal: number;
+}
+
+export interface Invoice {
+  id: string;
+  invoiceNumber: string;
+
+  challanId: string;
+  challanNumber: string;
+
+  customerId: string;
+  customerName: string;
+  businessName?: string;
+
+  items: InvoiceItem[];
+
+  subtotal: number;
+  taxRate: number;
+  taxAmount: number;
+  grandTotal: number;
+
+  status: InvoiceStatus;
+
+  createdBy: string;
+  createdAt: string;
+
+  dueDate?: string;
+}
