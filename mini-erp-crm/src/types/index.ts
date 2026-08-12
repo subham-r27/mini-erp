@@ -1,0 +1,104 @@
+export type UserRole =
+  | "ADMIN"
+  | "SALES"
+  | "WAREHOUSE"
+  | "ACCOUNTS";
+
+export type CustomerType =
+  | "RETAIL"
+  | "WHOLESALE"
+  | "DISTRIBUTOR";
+
+export type CustomerStatus =
+  | "LEAD"
+  | "ACTIVE"
+  | "INACTIVE";
+
+export type ChallanStatus =
+  | "DRAFT"
+  | "CONFIRMED"
+  | "CANCELLED";
+
+export type StockMovementType =
+  | "IN"
+  | "OUT";
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: UserRole;
+  avatar?: string;
+}
+
+export interface FollowUp {
+  id: string;
+  customerId: string;
+  note: string;
+  followUpDate: string;
+  createdBy: string;
+  createdAt: string;
+}
+
+export interface Customer {
+  id: string;
+  customerName: string;
+  businessName: string;
+  mobile: string;
+  email: string;
+  gstNumber?: string;
+  customerType: CustomerType;
+  status: CustomerStatus;
+  address: string;
+  followUpDate?: string;
+  notes?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  followUps?: FollowUp[];
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  sku: string;
+  category: string;
+  unitPrice: number;
+  currentStock: number;
+  minimumStock: number;
+  warehouse: string;
+  imageUrl?: string;
+}
+
+export interface StockMovement {
+  id: string;
+  productId: string;
+  productName: string;
+  quantity: number;
+  movementType: StockMovementType;
+  reason: string;
+  createdBy: string;
+  createdAt: string;
+}
+
+export interface ChallanItem {
+  id: string;
+  productId: string;
+  productName: string;
+  sku: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+}
+
+export interface Challan {
+  id: string;
+  challanNumber: string;
+  customerId: string;
+  customerName: string;
+  totalQuantity: number;
+  totalAmount: number;
+  status: ChallanStatus;
+  createdBy: string;
+  createdAt: string;
+  items: ChallanItem[];
+}
