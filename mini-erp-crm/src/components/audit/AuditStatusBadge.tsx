@@ -1,0 +1,45 @@
+import type {
+    AuditStatus,
+  } from "../../types";
+  
+  interface AuditStatusBadgeProps {
+    status: AuditStatus;
+  }
+  
+  export default function AuditStatusBadge({
+    status,
+  }: AuditStatusBadgeProps) {
+    const success =
+      status === "SUCCESS";
+  
+    return (
+      <span
+        className={`
+          inline-flex items-center gap-1.5
+          rounded-lg px-2.5 py-1
+          text-xs font-medium
+          ring-1
+          ${
+            success
+              ? "bg-emerald-50 text-emerald-700 ring-emerald-200"
+              : "bg-red-50 text-red-700 ring-red-200"
+          }
+        `}
+      >
+        <span
+          className={`
+            h-1.5 w-1.5 rounded-full
+            ${
+              success
+                ? "bg-emerald-500"
+                : "bg-red-500"
+            }
+          `}
+        />
+  
+        {success
+          ? "Success"
+          : "Failed"}
+      </span>
+    );
+  }

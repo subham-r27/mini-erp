@@ -4,6 +4,7 @@ import type {
     Product,
     Invoice,
     StockMovement,
+    AuditLog,
     User,
   } from "../types";
   
@@ -574,5 +575,137 @@ import type {
       status: "INACTIVE",
       lastLogin: "2026-08-09 10:24",
       createdAt: "2026-03-20",
+    },
+  ];
+
+  export const auditLogs: AuditLog[] = [
+    {
+      id: "AUD-001",
+      userId: "USR-001",
+      userName: "Subham Rout",
+      action: "LOGIN",
+      module: "AUTH",
+      description:
+        "Administrator logged into the ERP system.",
+      status: "SUCCESS",
+      timestamp: "2026-08-13 09:42:18",
+      ipAddress: "192.168.1.10",
+    },
+  
+    {
+      id: "AUD-002",
+      userId: "USR-002",
+      userName: "Rahul Sharma",
+      action: "CREATE",
+      module: "CUSTOMERS",
+      description:
+        "Created a new customer record.",
+      status: "SUCCESS",
+      timestamp: "2026-08-13 09:31:42",
+      ipAddress: "192.168.1.12",
+    },
+  
+    {
+      id: "AUD-003",
+      userId: "USR-003",
+      userName: "Arjun Kumar",
+      action: "UPDATE",
+      module: "INVENTORY",
+      description:
+        "Updated stock quantity for a product.",
+      status: "SUCCESS",
+      timestamp: "2026-08-13 09:18:07",
+      ipAddress: "192.168.1.15",
+    },
+  
+    {
+      id: "AUD-004",
+      userId: "USR-001",
+      userName: "Subham Rout",
+      action: "UPDATE",
+      module: "PRODUCTS",
+      description:
+        "Updated product pricing information.",
+      status: "SUCCESS",
+      timestamp: "2026-08-13 08:56:31",
+      ipAddress: "192.168.1.10",
+    },
+  
+    {
+      id: "AUD-005",
+      userId: "USR-004",
+      userName: "Priya Singh",
+      action: "CREATE",
+      module: "INVOICES",
+      description:
+        "Created invoice INV-2026-0042.",
+      status: "SUCCESS",
+      timestamp: "2026-08-13 08:41:19",
+      ipAddress: "192.168.1.18",
+    },
+  
+    {
+      id: "AUD-006",
+      userId: "USR-002",
+      userName: "Rahul Sharma",
+      action: "UPDATE",
+      module: "CHALLANS",
+      description:
+        "Updated sales challan CH-2026-018.",
+      status: "SUCCESS",
+      timestamp: "2026-08-13 08:22:54",
+      ipAddress: "192.168.1.12",
+    },
+  
+    {
+      id: "AUD-007",
+      userId: "USR-001",
+      userName: "Subham Rout",
+      action: "UPDATE",
+      module: "SETTINGS",
+      description:
+        "Updated company notification settings.",
+      status: "SUCCESS",
+      timestamp: "2026-08-12 18:47:03",
+      ipAddress: "192.168.1.10",
+    },
+  
+    {
+      id: "AUD-008",
+      userId: "USR-003",
+      userName: "Arjun Kumar",
+      action: "DELETE",
+      module: "INVENTORY",
+      description:
+        "Removed an obsolete stock movement.",
+      status: "SUCCESS",
+      timestamp: "2026-08-12 17:35:22",
+      ipAddress: "192.168.1.15",
+    },
+  
+    {
+      id: "AUD-009",
+      userId: "USR-004",
+      userName: "Priya Singh",
+      action: "LOGIN",
+      module: "AUTH",
+      description:
+        "Accounts user logged into the ERP system.",
+      status: "SUCCESS",
+      timestamp: "2026-08-12 16:11:09",
+      ipAddress: "192.168.1.18",
+    },
+  
+    {
+      id: "AUD-010",
+      userId: "USR-002",
+      userName: "Rahul Sharma",
+      action: "VIEW",
+      module: "CUSTOMERS",
+      description:
+        "Viewed customer information.",
+      status: "SUCCESS",
+      timestamp: "2026-08-12 15:42:11",
+      ipAddress: "192.168.1.12",
     },
   ];

@@ -20,6 +20,7 @@ import Settings from "../pages/Settings";
 
 import ProtectedRoute from "./ProtectedRoute";
 import RoleProtectedRoute from "./RoleProtectedRoute";
+import AuditLogs from "../pages/AuditLogs";
 
 export function AppRoutes() {
   return (
@@ -158,6 +159,19 @@ export function AppRoutes() {
             {/* =================================================
                 UNKNOWN ROUTES
                 ================================================= */}
+            
+            <Route
+  element={
+    <RoleProtectedRoute
+      permission="VIEW_AUDIT_LOGS"
+    />
+  }
+>
+  <Route
+    path="/audit-logs"
+    element={<AuditLogs />}
+  />
+</Route>
 
             <Route
               path="*"

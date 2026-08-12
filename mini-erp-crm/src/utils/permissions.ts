@@ -3,6 +3,7 @@ import type {
   } from "../types";
   
   export type Permission =
+    | "VIEW_AUDIT_LOGS"
     | "VIEW_DASHBOARD"
     | "MANAGE_USERS"
     | "VIEW_CUSTOMERS"
@@ -22,6 +23,7 @@ import type {
     Permission[]
   > = {
     ADMIN: [
+      "VIEW_AUDIT_LOGS",
       "VIEW_DASHBOARD",
       "MANAGE_USERS",
   

@@ -2,6 +2,7 @@ import {
   BarChart3,
   Boxes,
   ClipboardList,
+  History,
   FileText,
   LayoutDashboard,
   Package,
@@ -123,6 +124,13 @@ const navigation = [
         icon: Settings,
         permission:
           "MANAGE_SETTINGS" as Permission,
+      },
+      {
+        label: "Audit Logs",
+        path: "/audit-logs",
+        icon: History,
+        permission:
+          "VIEW_AUDIT_LOGS" as Permission,
       },
     ],
   },

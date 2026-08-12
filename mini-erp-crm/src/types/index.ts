@@ -176,3 +176,42 @@ export interface Invoice {
 
   dueDate?: string;
 }
+export type AuditAction =
+  | "CREATE"
+  | "UPDATE"
+  | "DELETE"
+  | "LOGIN"
+  | "LOGOUT"
+  | "VIEW";
+
+export type AuditModule =
+  | "AUTH"
+  | "CUSTOMERS"
+  | "PRODUCTS"
+  | "INVENTORY"
+  | "CHALLANS"
+  | "INVOICES"
+  | "USERS"
+  | "SETTINGS";
+
+export type AuditStatus =
+  | "SUCCESS"
+  | "FAILED";
+
+export interface AuditLog {
+  id: string;
+
+  userId: string;
+  userName: string;
+
+  action: AuditAction;
+  module: AuditModule;
+
+  description: string;
+
+  status: AuditStatus;
+
+  timestamp: string;
+
+  ipAddress?: string;
+}
