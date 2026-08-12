@@ -1,4 +1,5 @@
-![Uploading ChatGPT Image Aug 12, 2026, 11_53_46 AM.png…]()
+<img width="1536" height="1024" alt="ChatGPT Image Aug 12, 2026, 11_53_46 AM" src="https://github.com/user-attachments/assets/6c598ed8-0242-4aa3-8b21-756dfdccdf63" />
+
 # Mini ERP + CRM Operations Portal
 
 ## Full Stack Developer Case Study Documentation# Mini ERP + CRM Operations Portal
