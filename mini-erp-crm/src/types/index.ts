@@ -58,47 +58,65 @@ export interface Customer {
 }
 
 export interface Product {
-  id: string;
-  name: string;
-  sku: string;
-  category: string;
-  unitPrice: number;
-  currentStock: number;
-  minimumStock: number;
-  warehouse: string;
-  imageUrl?: string;
-}
+    id: string;
+    name: string;
+    sku: string;
+    category: string;
+    unitPrice: number;
+    currentStock: number;
+    minimumStock: number;
+    warehouse: string;
+    description?: string;
+    createdAt?: string;
+    updatedAt?: string;
+  }
+  
+  export interface StockMovement {
+    id: string;
+    productId: string;
+    productName: string;
+    sku: string;
+    quantity: number;
+    movementType: StockMovementType;
+    reason: string;
+    createdBy: string;
+    createdAt: string;
+  }
 
-export interface StockMovement {
-  id: string;
-  productId: string;
-  productName: string;
-  quantity: number;
-  movementType: StockMovementType;
-  reason: string;
-  createdBy: string;
-  createdAt: string;
-}
-
-export interface ChallanItem {
-  id: string;
-  productId: string;
-  productName: string;
-  sku: string;
-  quantity: number;
-  unitPrice: number;
-  totalPrice: number;
-}
-
-export interface Challan {
-  id: string;
-  challanNumber: string;
-  customerId: string;
-  customerName: string;
-  totalQuantity: number;
-  totalAmount: number;
-  status: ChallanStatus;
-  createdBy: string;
-  createdAt: string;
-  items: ChallanItem[];
-}
+  export interface ChallanItem {
+    id: string;
+    productId: string;
+  
+    // Snapshot data
+    productName: string;
+    sku: string;
+    unitPrice: number;
+  
+    quantity: number;
+  
+    lineTotal: number;
+  }
+  
+  export interface Challan {
+    id: string;
+    challanNumber: string;
+  
+    customerId: string;
+    customerName: string;
+    businessName?: string;
+  
+    items: ChallanItem[];
+  
+    totalQuantity: number;
+  
+    subtotal: number;
+    taxRate: number;
+    taxAmount: number;
+    grandTotal: number;
+  
+    status: ChallanStatus;
+  
+    createdBy: string;
+    createdAt: string;
+    updatedAt?: string;
+  }

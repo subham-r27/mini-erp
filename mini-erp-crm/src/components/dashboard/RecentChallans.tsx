@@ -79,7 +79,7 @@ export default function RecentChallans() {
                 <td className="px-5 py-4">
                   <p className="text-sm font-medium text-slate-800">
                     ₹
-                    {challan.totalAmount.toLocaleString(
+                    {challan.grandTotal.toLocaleString(
                       "en-IN",
                     )}
                   </p>
@@ -147,7 +147,7 @@ export default function RecentChallans() {
 
               <span className="text-sm font-semibold text-slate-800">
                 ₹
-                {challan.totalAmount.toLocaleString(
+                {challan.grandTotal.toLocaleString(
                   "en-IN",
                 )}
               </span>

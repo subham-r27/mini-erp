@@ -66,7 +66,7 @@ import type {
         {
           id: "FU-003",
           customerId: "CUS-002",
-          note: "Confirmed requirement for monitors.",
+          note: "CONFIRMED requirement for monitors.",
           followUpDate: "2026-08-14",
           createdBy: "Arjun Mehta",
           createdAt: "2026-08-09 10:15",
@@ -151,53 +151,107 @@ import type {
   export const products: Product[] = [
     {
       id: "PRD-001",
-      name: "Wireless Keyboard",
-      sku: "KB-1001",
-      category: "Computer Accessories",
-      unitPrice: 1299,
-      currentStock: 42,
-      minimumStock: 10,
-      warehouse: "Main Warehouse",
-    },
-    {
-      id: "PRD-002",
       name: "Wireless Mouse",
-      sku: "MS-2001",
-      category: "Computer Accessories",
+      sku: "WM-1001",
+      category: "Accessories",
       unitPrice: 799,
       currentStock: 7,
       minimumStock: 10,
-      warehouse: "Main Warehouse",
+      warehouse: "Bangalore Central",
+      description:
+        "Ergonomic wireless mouse with USB receiver.",
+      createdAt: "2026-05-10",
+      updatedAt: "2026-08-10",
     },
+  
+    {
+      id: "PRD-002",
+      name: "Mechanical Keyboard",
+      sku: "KB-2001",
+      category: "Accessories",
+      unitPrice: 2499,
+      currentStock: 35,
+      minimumStock: 10,
+      warehouse: "Bangalore Central",
+      description:
+        "Mechanical keyboard with RGB backlight.",
+      createdAt: "2026-05-15",
+      updatedAt: "2026-08-11",
+    },
+  
     {
       id: "PRD-003",
-      name: "24-inch Monitor",
-      sku: "MN-3001",
-      category: "Monitors",
-      unitPrice: 8999,
-      currentStock: 18,
-      minimumStock: 5,
-      warehouse: "Main Warehouse",
-    },
-    {
-      id: "PRD-004",
       name: "USB-C Hub",
-      sku: "HB-4001",
-      category: "Computer Accessories",
+      sku: "UCH-3001",
+      category: "Accessories",
       unitPrice: 1499,
       currentStock: 3,
       minimumStock: 8,
-      warehouse: "Secondary Warehouse",
+      warehouse: "Bangalore East",
+      description:
+        "Multi-port USB-C hub with HDMI and USB 3.0.",
+      createdAt: "2026-06-01",
+      updatedAt: "2026-08-09",
     },
+  
+    {
+      id: "PRD-004",
+      name: "24-inch Monitor",
+      sku: "MON-4001",
+      category: "Monitors",
+      unitPrice: 12999,
+      currentStock: 18,
+      minimumStock: 5,
+      warehouse: "Bangalore Central",
+      description:
+        "Full HD IPS monitor.",
+      createdAt: "2026-04-22",
+      updatedAt: "2026-08-08",
+    },
+  
     {
       id: "PRD-005",
+      name: "HDMI Cable",
+      sku: "HDMI-5001",
+      category: "Cables",
+      unitPrice: 499,
+      currentStock: 4,
+      minimumStock: 10,
+      warehouse: "Bangalore East",
+      description:
+        "High-speed HDMI cable.",
+      createdAt: "2026-06-18",
+      updatedAt: "2026-08-07",
+    },
+  
+    {
+      id: "PRD-006",
       name: "Laptop Stand",
-      sku: "LS-5001",
-      category: "Office Accessories",
-      unitPrice: 1899,
-      currentStock: 25,
+      sku: "LS-6001",
+      category: "Accessories",
+      unitPrice: 1299,
+      currentStock: 24,
       minimumStock: 8,
-      warehouse: "Main Warehouse",
+      warehouse: "Bangalore Central",
+      description:
+        "Adjustable aluminum laptop stand.",
+      createdAt: "2026-07-01",
+      updatedAt: "2026-08-05",
+    },
+  
+    {
+      id: "PRD-007",
+      name: "Webcam",
+      sku: "WC-7001",
+      category: "Accessories",
+      unitPrice: 1899,
+      currentStock: 12,
+      minimumStock: 5,
+      warehouse: "Bangalore North",
+      description:
+        "1080p USB webcam with built-in microphone.",
+      createdAt: "2026-07-12",
+      updatedAt: "2026-08-06",
     },
   ];
   
@@ -205,74 +259,152 @@ import type {
     {
       id: "MOV-001",
       productId: "PRD-001",
-      productName: "Wireless Keyboard",
-      quantity: 50,
+      productName: "Wireless Mouse",
+      sku: "WM-1001",
+      quantity: 20,
       movementType: "IN",
-      reason: "Purchase Order",
+      reason: "New supplier shipment",
       createdBy: "Arjun Mehta",
-      createdAt: "2026-08-12 10:30",
+      createdAt: "2026-08-10 10:30",
     },
+  
     {
       id: "MOV-002",
-      productId: "PRD-002",
+      productId: "PRD-001",
       productName: "Wireless Mouse",
+      sku: "WM-1001",
+      quantity: 13,
+      movementType: "OUT",
+      reason: "Sales Challan SC-1024",
+      createdBy: "Rohit Verma",
+      createdAt: "2026-08-11 14:15",
+    },
+  
+    {
+      id: "MOV-003",
+      productId: "PRD-002",
+      productName: "Mechanical Keyboard",
+      sku: "KB-2001",
+      quantity: 30,
+      movementType: "IN",
+      reason: "Purchase order received",
+      createdBy: "Arjun Mehta",
+      createdAt: "2026-08-09 11:20",
+    },
+  
+    {
+      id: "MOV-004",
+      productId: "PRD-003",
+      productName: "USB-C Hub",
+      sku: "UCH-3001",
       quantity: 5,
       movementType: "OUT",
       reason: "Sales Challan SC-1023",
       createdBy: "Rohit Verma",
-      createdAt: "2026-08-12 09:45",
+      createdAt: "2026-08-09 16:45",
     },
+  
     {
-      id: "MOV-003",
-      productId: "PRD-003",
+      id: "MOV-005",
+      productId: "PRD-004",
       productName: "24-inch Monitor",
-      quantity: 20,
+      sku: "MON-4001",
+      quantity: 10,
       movementType: "IN",
-      reason: "Purchase Order",
+      reason: "Supplier delivery",
       createdBy: "Arjun Mehta",
-      createdAt: "2026-08-11 16:20",
+      createdAt: "2026-08-08 09:30",
+    },
+  
+    {
+      id: "MOV-006",
+      productId: "PRD-005",
+      productName: "HDMI Cable",
+      sku: "HDMI-5001",
+      quantity: 6,
+      movementType: "OUT",
+      reason: "Sales Challan SC-1022",
+      createdBy: "Rohit Verma",
+      createdAt: "2026-08-07 13:10",
     },
   ];
   
   export const challans: Challan[] = [
     {
-      id: "CH-001",
-      challanNumber: "SC-1024",
+      id: "CHL-001",
+      challanNumber: "SC-2026-0001",
+  
       customerId: "CUS-001",
-      customerName: "Rahul Traders",
-      totalQuantity: 8,
-      totalAmount: 14392,
+      customerName: "Rajesh Kumar",
+      businessName: "RK Electronics",
+  
+      items: [
+        {
+          id: "ITEM-001",
+          productId: "PRD-001",
+          productName: "Wireless Mouse",
+          sku: "WM-1001",
+          unitPrice: 799,
+          quantity: 5,
+          lineTotal: 3995,
+        },
+        {
+          id: "ITEM-002",
+          productId: "PRD-002",
+          productName: "Mechanical Keyboard",
+          sku: "KB-2001",
+          unitPrice: 2499,
+          quantity: 2,
+          lineTotal: 4998,
+        },
+      ],
+  
+      totalQuantity: 7,
+  
+      subtotal: 8993,
+      taxRate: 18,
+      taxAmount: 1618.74,
+      grandTotal: 10611.74,
+  
       status: "CONFIRMED",
-      createdBy: "Rohit Verma",
-      createdAt: "2026-08-12",
-      items: [],
+  
+      createdBy: "Arjun Mehta",
+      createdAt: "2026-08-10 11:30",
     },
+  
     {
-      id: "CH-002",
-      challanNumber: "SC-1023",
+      id: "CHL-002",
+      challanNumber: "SC-2026-0002",
+  
       customerId: "CUS-002",
-      customerName: "Nair Distributors",
-      totalQuantity: 12,
-      totalAmount: 21588,
+      customerName: "Priya Sharma",
+      businessName: "PS Distributors",
+  
+      items: [
+        {
+          id: "ITEM-003",
+          productId: "PRD-004",
+          productName: "24-inch Monitor",
+          sku: "MON-4001",
+          unitPrice: 12999,
+          quantity: 3,
+          lineTotal: 38997,
+        },
+      ],
+  
+      totalQuantity: 3,
+  
+      subtotal: 38997,
+      taxRate: 18,
+      taxAmount: 7019.46,
+      grandTotal: 46016.46,
+  
       status: "DRAFT",
-      createdBy: "Rohit Verma",
-      createdAt: "2026-08-12",
-      items: [],
-    },
-    {
-      id: "CH-003",
-      challanNumber: "SC-1022",
-      customerId: "CUS-003",
-      customerName: "AK Retail",
-      totalQuantity: 5,
-      totalAmount: 6495,
-      status: "CONFIRMED",
-      createdBy: "Rohit Verma",
-      createdAt: "2026-08-11",
-      items: [],
+  
+      createdBy: "Arjun Mehta",
+      createdAt: "2026-08-11 15:20",
     },
   ];
-
   export const salesOverview = [
     {
       date: "Aug 01",
@@ -314,7 +446,7 @@ import type {
   export const recentActivities = [
     {
       id: "ACT-001",
-      title: "Challan SC-1024 confirmed",
+      title: "Challan SC-1024 CONFIRMED",
       description: "Rahul Traders · ₹14,392",
       time: "12 minutes ago",
       type: "success",
@@ -336,7 +468,7 @@ import type {
     {
       id: "ACT-004",
       title: "Challan SC-1023 created",
-      description: "Nair Distributors · Draft",
+      description: "Nair Distributors · DRAFT",
       time: "2 hours ago",
       type: "challan",
     },

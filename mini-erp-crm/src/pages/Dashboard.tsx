@@ -36,7 +36,7 @@ import {
   
     const totalSales = confirmedChallans.reduce(
       (sum, challan) =>
-        sum + challan.totalAmount,
+        sum + challan.grandTotal,
       0,
     );
   
