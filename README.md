@@ -1,4 +1,4 @@
-[Mini_ERP_CRM_Project_Documentation(1).md](https://github.com/user-attachments/files/31007558/Mini_ERP_CRM_Project_Documentation.1.md)
+![Uploading ChatGPT Image Aug 12, 2026, 11_53_46 AM.png…]()
 # Mini ERP + CRM Operations Portal
 
 ## Full Stack Developer Case Study Documentation# Mini ERP + CRM Operations Portal
