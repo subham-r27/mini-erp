@@ -3,6 +3,7 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import authRouter from "./routes/auth.routes.js";
+import adminRouter from "./routes/admin.routes.js";
 import { env } from "./config/env.js";
 import healthRouter from "./routes/health.routes.js";
 import { errorHandler } from "./middleware/error.middleware.js";
@@ -141,6 +142,11 @@ app.use(
 app.use(
   "/api/auth",
   authRouter,
+);
+
+app.use(
+  "/api/admin",
+  adminRouter,
 );
 
 
