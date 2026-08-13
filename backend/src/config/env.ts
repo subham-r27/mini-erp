@@ -1,39 +1,48 @@
 import "dotenv/config";
-import { z } from "zod";
 
-const envSchema = z.object({
-  NODE_ENV: z
-    .enum([
-      "development",
-      "test",
-      "production",
-    ])
-    .default("development"),
 
-  PORT: z.coerce
-    .number()
-    .int()
-    .positive()
-    .default(8000),
+const requiredEnv =
+  (
+    name: string,
+  ): string => {
+    const value =
+      process.env[name];
 
-  DATABASE_URL: z
-    .string()
-    .min(1),
+    if (!value) {
+      throw new Error(
+        `Missing required environment variable: ${name}`,
+      );
+    }
 
-  JWT_SECRET: z
-    .string()
-    .min(32),
+    return value;
+  };
 
-  JWT_EXPIRES_IN: z
-    .string()
-    .default("1d"),
 
-  FRONTEND_URL: z
-    .string()
-    .url(),
-});
+export const env = {
+  NODE_ENV:
+    process.env.NODE_ENV ??
+    "development",
 
-export const env =
-  envSchema.parse(
-    process.env,
-  );
+  PORT: Number(
+    process.env.PORT ??
+      8000,
+  ),
+
+  DATABASE_URL:
+    requiredEnv(
+      "DATABASE_URL",
+    ),
+
+  JWT_SECRET:
+    requiredEnv(
+      "JWT_SECRET",
+    ),
+
+  JWT_EXPIRES_IN:
+    process.env.JWT_EXPIRES_IN ??
+    "1d",
+
+  FRONTEND_URL:
+    process.env.FRONTEND_URL ??
+    "http://localhost:5173",
+};
