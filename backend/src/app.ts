@@ -7,6 +7,8 @@ import adminRouter from "./routes/admin.routes.js";
 import { env } from "./config/env.js";
 import healthRouter from "./routes/health.routes.js";
 import { errorHandler } from "./middleware/error.middleware.js";
+import customerRouter from "./routes/customer.routes.js";
+import productRouter from "./routes/product.routes.js";
 
 
 const app = express();
@@ -147,6 +149,16 @@ app.use(
 app.use(
   "/api/admin",
   adminRouter,
+);
+
+app.use(
+  "/api/customers",
+  customerRouter,
+);
+
+app.use(
+  "/api/products",
+  productRouter,
 );
 
 
