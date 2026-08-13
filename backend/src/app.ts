@@ -9,6 +9,8 @@ import healthRouter from "./routes/health.routes.js";
 import { errorHandler } from "./middleware/error.middleware.js";
 import customerRouter from "./routes/customer.routes.js";
 import productRouter from "./routes/product.routes.js";
+import inventoryRouter from "./routes/inventory.routes.js";
+import challanRouter from "./routes/challan.routes.js";
 
 
 const app = express();
@@ -159,6 +161,16 @@ app.use(
 app.use(
   "/api/products",
   productRouter,
+);
+
+app.use(
+  "/api/inventory",
+  inventoryRouter,
+);
+
+app.use(
+  "/api/challans",
+  challanRouter,
 );
 
 
