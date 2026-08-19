@@ -168,31 +168,23 @@ import {
       }
   
       setLoading(true);
-  
-      await new Promise((resolve) =>
-        setTimeout(resolve, 400),
-      );
-  
-      onSubmit({
-        name: form.name.trim(),
-        sku: form.sku.trim().toUpperCase(),
-        category: form.category,
-        unitPrice: Number(
-          form.unitPrice,
-        ),
-        currentStock: Number(
-          form.currentStock,
-        ),
-        minimumStock: Number(
-          form.minimumStock,
-        ),
-        warehouse: form.warehouse,
-        description:
-          form.description.trim() ||
-          undefined,
-      });
-  
-      setLoading(false);
+
+      try {
+        await onSubmit({
+          name: form.name.trim(),
+          sku: form.sku.trim().toUpperCase(),
+          category: form.category,
+          unitPrice: Number(form.unitPrice),
+          currentStock: Number(form.currentStock),
+          minimumStock: Number(form.minimumStock),
+          warehouse: form.warehouse,
+          description:
+            form.description.trim() ||
+            undefined,
+        });
+      } finally {
+        setLoading(false);
+      }
     };
   
     return (

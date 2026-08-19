@@ -1,11 +1,17 @@
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router";
 
-import { challans } from "../../data/mockData";
+import type { Challan } from "../../types";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
 
-export default function RecentChallans() {
+interface RecentChallansProps {
+  challans: Challan[];
+}
+
+export default function RecentChallans({
+  challans,
+}: RecentChallansProps) {
   const navigate = useNavigate();
 
   return (

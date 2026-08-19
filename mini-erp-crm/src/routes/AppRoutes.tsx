@@ -5,9 +5,14 @@ import {
   Routes,
 } from "react-router";
 
+import { AuthProvider } from "../context/AuthContext";
+
 import AppLayout from "../components/layout/AppLayout";
 
 import Login from "../pages/Login";
+import ProtectedRoute from "./ProtectedRoute";
+import RoleProtectedRoute from "./RoleProtectedRoute";
+
 import Profile from "../pages/Profile";
 import Dashboard from "../pages/Dashboard";
 import Customers from "../pages/Customers";
@@ -18,175 +23,124 @@ import Invoices from "../pages/Invoices";
 import Users from "../pages/Users";
 import Settings from "../pages/Settings";
 
-import ProtectedRoute from "./ProtectedRoute";
-import RoleProtectedRoute from "./RoleProtectedRoute";
-import AuditLogs from "../pages/AuditLogs";
-
 export function AppRoutes() {
   return (
     <BrowserRouter>
-      <Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
 
-        {/* =====================================================
-            PUBLIC ROUTES
-            ===================================================== */}
-
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-
-
-        {/* =====================================================
-            PROTECTED APPLICATION
-            ===================================================== */}
-
-        <Route element={<ProtectedRoute />}>
-          <Route element={<AppLayout />}>
-
-            {/* Root */}
-
-            <Route
-              path="/"
-              element={
-                <Navigate
-                  to="/dashboard"
-                  replace
-                />
-              }
-            />
-
-
-            {/* =================================================
-                DASHBOARD
-                ================================================= */}
-
-            <Route
-              path="/dashboard"
-              element={<Dashboard />}
-            />
-
-
-            {/* =================================================
-                CUSTOMERS
-                ================================================= */}
-
-            <Route
-              path="/customers"
-              element={<Customers />}
-            />
-
-
-            {/* =================================================
-                PRODUCTS
-                ================================================= */}
-
-            <Route
-              path="/products"
-              element={<Products />}
-            />
-
-
-            {/* =================================================
-                INVENTORY
-                ================================================= */}
-
-            <Route
-              path="/inventory"
-              element={<Inventory />}
-            />
-
-
-            {/* =================================================
-                CHALLANS
-                ================================================= */}
-
-            <Route
-              path="/challans"
-              element={<Challans />}
-            />
-
-
-            {/* =================================================
-                INVOICES
-                ================================================= */}
-
-            <Route
-              path="/invoices"
-              element={<Invoices />}
-            />
-
-
-            {/* =================================================
-                USERS
-                ADMIN ONLY
-                ================================================= */}
-
-            <Route
-              element={
-                <RoleProtectedRoute
-                  permission="MANAGE_USERS"
-                />
-              }
-            >
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AppLayout />}>
               <Route
-                path="/users"
-                element={<Users />}
+                path="/"
+                element={
+                  <Navigate to="/dashboard" replace />
+                }
+              />
+
+              <Route
+                element={
+                  <RoleProtectedRoute permission="VIEW_DASHBOARD" />
+                }
+              >
+                <Route
+                  path="/dashboard"
+                  element={<Dashboard />}
+                />
+              </Route>
+
+              <Route
+                element={
+                  <RoleProtectedRoute permission="VIEW_CUSTOMERS" />
+                }
+              >
+                <Route
+                  path="/customers"
+                  element={<Customers />}
+                />
+              </Route>
+
+              <Route
+                element={
+                  <RoleProtectedRoute permission="VIEW_PRODUCTS" />
+                }
+              >
+                <Route
+                  path="/products"
+                  element={<Products />}
+                />
+              </Route>
+
+              <Route
+                element={
+                  <RoleProtectedRoute permission="VIEW_INVENTORY" />
+                }
+              >
+                <Route
+                  path="/inventory"
+                  element={<Inventory />}
+                />
+              </Route>
+
+              <Route
+                element={
+                  <RoleProtectedRoute permission="VIEW_CHALLANS" />
+                }
+              >
+                <Route
+                  path="/challans"
+                  element={<Challans />}
+                />
+              </Route>
+
+              <Route
+                element={
+                  <RoleProtectedRoute permission="VIEW_INVOICES" />
+                }
+              >
+                <Route
+                  path="/invoices"
+                  element={<Invoices />}
+                />
+              </Route>
+
+              <Route
+                element={
+                  <RoleProtectedRoute permission="MANAGE_USERS" />
+                }
+              >
+                <Route path="/users" element={<Users />} />
+              </Route>
+
+              <Route path="/profile" element={<Profile />} />
+
+              <Route
+                element={
+                  <RoleProtectedRoute permission="MANAGE_SETTINGS" />
+                }
+              >
+                <Route
+                  path="/settings"
+                  element={<Settings />}
+                />
+              </Route>
+
+              <Route
+                path="*"
+                element={
+                  <Navigate to="/dashboard" replace />
+                }
               />
             </Route>
-
-
-            {/* =================================================
-                PROFILE
-                ================================================= */}
-
-            <Route
-              path="/profile"
-              element={<Profile />}
-            />
-
-
-            {/* =================================================
-                SETTINGS
-                ================================================= */}
-
-            <Route
-              path="/settings"
-              element={<Settings />}
-            />
-
-
-            {/* =================================================
-                UNKNOWN ROUTES
-                ================================================= */}
-            
-            <Route
-  element={
-    <RoleProtectedRoute
-      permission="VIEW_AUDIT_LOGS"
-    />
-  }
->
-  <Route
-    path="/audit-logs"
-    element={<AuditLogs />}
-  />
-</Route>
-
-            <Route
-              path="*"
-              element={
-                <Navigate
-                  to="/dashboard"
-                  replace
-                />
-              }
-            />
-
           </Route>
-        </Route>
 
-      </Routes>
+          <Route
+            path="*"
+            element={<Navigate to="/dashboard" replace />}
+          />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

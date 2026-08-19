@@ -13,6 +13,7 @@ import inventoryRouter from "./routes/inventory.routes.js";
 import challanRouter from "./routes/challan.routes.js";
 import invoiceRouter from "./routes/invoice.routes.js";
 import dashboardRouter from "./routes/dashboard.routes.js";
+import userRouter from "./routes/user.routes.js";
 
 
 const app = express();
@@ -183,6 +184,11 @@ app.use(
 app.use(
   "/api/dashboard",
   dashboardRouter,
+);
+
+app.use(
+  "/api/users",
+  userRouter,
 );
 
 

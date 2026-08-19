@@ -32,14 +32,14 @@ import type {
   function getParamId(
     req: Request,
   ): string {
-    const id = getParamId(req);
-  
+    const id = req.params.id;
+
     if (typeof id !== "string") {
       throw new Error(
         "INVALID_ROUTE_PARAMETER",
       );
     }
-  
+
     return id;
   }
 

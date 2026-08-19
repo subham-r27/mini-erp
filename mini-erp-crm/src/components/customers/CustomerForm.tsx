@@ -21,7 +21,7 @@ import {
         Customer,
         "id" | "createdAt" | "updatedAt"
       >,
-    ) => void;
+    ) => void | Promise<void>;
     onCancel: () => void;
   }
   
@@ -169,34 +169,30 @@ import {
       }
   
       setLoading(true);
-  
-      // Temporary frontend delay.
-      // Later this becomes an API request.
-      await new Promise((resolve) =>
-        setTimeout(resolve, 500),
-      );
-  
-      onSubmit({
-        customerName:
-          form.customerName.trim(),
-        businessName:
-          form.businessName.trim(),
-        mobile: form.mobile.trim(),
-        email: form.email.trim(),
-        gstNumber:
-          form.gstNumber.trim() || undefined,
-        customerType:
-          form.customerType,
-        status: form.status,
-        address:
-          form.address.trim(),
-        followUpDate:
-          form.followUpDate || undefined,
-        notes:
-          form.notes.trim() || undefined,
-      });
-  
-      setLoading(false);
+
+      try {
+        await onSubmit({
+          customerName:
+            form.customerName.trim(),
+          businessName:
+            form.businessName.trim(),
+          mobile: form.mobile.trim(),
+          email: form.email.trim(),
+          gstNumber:
+            form.gstNumber.trim() || undefined,
+          customerType:
+            form.customerType,
+          status: form.status,
+          address:
+            form.address.trim(),
+          followUpDate:
+            form.followUpDate || undefined,
+          notes:
+            form.notes.trim() || undefined,
+        });
+      } finally {
+        setLoading(false);
+      }
     };
   
     return (

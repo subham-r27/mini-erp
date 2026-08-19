@@ -243,6 +243,13 @@ import {
               category: true,
             },
           },
+
+          createdBy: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
         },
   
         orderBy: {

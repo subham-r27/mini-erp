@@ -158,7 +158,7 @@ import {
               <InfoRow
                 icon={CalendarDays}
                 label="Account Created"
-                value={user.createdAt}
+                value={user.createdAt || "Not available"}
               />
   
               <InfoRow

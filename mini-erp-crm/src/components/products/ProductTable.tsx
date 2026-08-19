@@ -12,7 +12,7 @@ import {
   interface ProductTableProps {
     products: Product[];
     onView: (product: Product) => void;
-    onEdit: (product: Product) => void;
+    onEdit?: (product: Product) => void;
   }
   
   export default function ProductTable({
@@ -131,14 +131,17 @@ import {
                         <Eye className="h-4 w-4" />
                       </button>
   
-                      <button
-                        onClick={() =>
-                          onEdit(product)
-                        }
-                        className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </button>
+                      {onEdit && (
+                        <button
+                          onClick={() =>
+                            onEdit(product)
+                          }
+                          className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+                          title="Edit product"
+                        >
+                          <Pencil className="h-4 w-4" />
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -220,15 +223,17 @@ import {
                   View
                 </button>
   
-                <button
-                  onClick={() =>
-                    onEdit(product)
-                  }
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700"
-                >
-                  <Pencil className="h-4 w-4" />
-                  Edit
-                </button>
+                {onEdit && (
+                  <button
+                    onClick={() =>
+                      onEdit(product)
+                    }
+                    className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700"
+                  >
+                    <Pencil className="h-4 w-4" />
+                    Edit
+                  </button>
+                )}
               </div>
             </div>
           ))}

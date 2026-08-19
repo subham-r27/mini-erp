@@ -19,7 +19,7 @@ import {
     customer: Customer | null;
     open: boolean;
     onClose: () => void;
-    onAddFollowUp: () => void;
+    onAddFollowUp?: () => void;
   }
   
   export default function CustomerDetails({
@@ -204,12 +204,12 @@ import {
                 </p>
               </div>
   
-              <Button
-                onClick={onAddFollowUp}
-              >
-                <Plus className="h-4 w-4" />
-                Add Follow-up
-              </Button>
+              {onAddFollowUp && (
+                <Button onClick={onAddFollowUp}>
+                  <Plus className="h-4 w-4" />
+                  Add Follow-up
+                </Button>
+              )}
             </div>
   
             <div className="mt-4 space-y-3">

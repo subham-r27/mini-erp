@@ -14,7 +14,7 @@ import {
   interface CustomerTableProps {
     customers: Customer[];
     onView: (customer: Customer) => void;
-    onEdit: (customer: Customer) => void;
+    onEdit?: (customer: Customer) => void;
   }
   
   export default function CustomerTable({
@@ -148,16 +148,18 @@ import {
                       >
                         <Eye className="h-4 w-4" />
                       </button>
-  
-                      <button
-                        onClick={() =>
-                          onEdit(customer)
-                        }
-                        className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
-                        title="Edit customer"
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </button>
+
+                      {onEdit && (
+                        <button
+                          onClick={() =>
+                            onEdit(customer)
+                          }
+                          className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+                          title="Edit customer"
+                        >
+                          <Pencil className="h-4 w-4" />
+                        </button>
+                      )}
   
                       <button
                         className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
@@ -239,16 +241,18 @@ import {
                   <Eye className="h-4 w-4" />
                   View
                 </button>
-  
-                <button
-                  onClick={() =>
-                    onEdit(customer)
-                  }
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                >
-                  <Pencil className="h-4 w-4" />
-                  Edit
-                </button>
+
+                {onEdit && (
+                  <button
+                    onClick={() =>
+                      onEdit(customer)
+                    }
+                    className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                  >
+                    <Pencil className="h-4 w-4" />
+                    Edit
+                  </button>
+                )}
               </div>
             </div>
           ))}

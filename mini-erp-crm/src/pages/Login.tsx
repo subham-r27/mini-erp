@@ -66,22 +66,21 @@ import {
       setLoading(true);
   
       try {
-        const success =
-          await login(
-            email.trim(),
-            password,
-          );
-  
-        if (!success) {
-          setError(
-            "Invalid email or password.",
-          );
-          return;
-        }
-  
+        await login(
+          email.trim(),
+          password,
+        );
+
         navigate(from, {
           replace: true,
         });
+      } catch (error) {
+        const message =
+          error instanceof Error
+            ? error.message
+            : "Invalid email or password.";
+
+        setError(message);
       } finally {
         setLoading(false);
       }
