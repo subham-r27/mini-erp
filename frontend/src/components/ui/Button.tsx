@@ -17,7 +17,7 @@ export default function Button({
 }: ButtonProps) {
   const variants = {
     primary:
-      "bg-blue-600 text-white hover:bg-blue-700 shadow-sm",
+      "bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-purple-950/30",
     secondary:
       "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50",
     danger:

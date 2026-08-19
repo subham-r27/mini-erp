@@ -31,6 +31,93 @@ body {
   min-height: 100vh;
   background: #f8fafc;
 }
+@import "tailwindcss";
+
+:root {
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: #f4f1ff;
+  background: #09070f;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --ink: #f4f1ff;
+  --muted: #a8a1bd;
+  --surface: rgba(22, 17, 34, 0.82);
+  --surface-strong: #171124;
+  --line: rgba(177, 139, 255, 0.16);
+  --purple: #9b6cff;
+  --purple-bright: #c09aff;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(117, 58, 211, 0.18), transparent 32rem),
+    radial-gradient(circle at 92% 12%, rgba(55, 31, 111, 0.2), transparent 28rem),
+    #09070f;
+}
+
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+::selection { background: rgba(168, 113, 255, 0.35); color: white; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0d0a16; }
+::-webkit-scrollbar-thumb { background: #3e2c62; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #7048b4; }
+
+@keyframes portal-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+main { animation: portal-rise 0.45s ease-out both; }
+
+/* Global palette bridge for the existing Tailwind UI. */
+.bg-slate-50, .bg-slate-50\/60 { background-color: transparent !important; }
+.bg-white, .bg-white\/95 { background-color: var(--surface) !important; }
+.bg-slate-100 { background-color: rgba(255, 255, 255, 0.05) !important; }
+.border-slate-200, .border-slate-100 { border-color: var(--line) !important; }
+.text-slate-900, .text-slate-800, .text-slate-700 { color: var(--ink) !important; }
+.text-slate-600, .text-slate-500, .text-slate-400 { color: var(--muted) !important; }
+.text-blue-600, .text-indigo-600, .text-violet-600 { color: var(--purple-bright) !important; }
+.text-blue-700, .text-indigo-700, .text-violet-700 { color: var(--purple-bright) !important; }
+.bg-blue-600, .bg-indigo-600, .bg-violet-600 { background-color: var(--purple) !important; }
+[class~="hover:bg-slate-50"]:hover, [class~="hover:bg-slate-100"]:hover { background-color: rgba(155, 108, 255, 0.08) !important; }
+[class~="hover:bg-blue-700"]:hover, [class~="hover:bg-indigo-700"]:hover, [class~="hover:bg-violet-700"]:hover { background-color: #7d4fe2 !important; }
+.bg-blue-50, .bg-indigo-50, .bg-violet-50, .bg-blue-100, .bg-indigo-100, .bg-violet-100 { background-color: rgba(155, 108, 255, 0.12) !important; }
+.ring-white { --tw-ring-color: #171124 !important; }
+
+input, textarea, select {
+  border-color: var(--line) !important;
+  background-color: rgba(10, 7, 18, 0.62) !important;
+  color: var(--ink) !important;
+}
+
+input::placeholder, textarea::placeholder { color: #746c8c !important; }
+input:focus, textarea:focus, select:focus {
+  border-color: rgba(176, 126, 255, 0.75) !important;
+  box-shadow: 0 0 0 4px rgba(155, 108, 255, 0.12) !important;
+}
+
+table thead { background: rgba(155, 108, 255, 0.07) !important; }
+table tr:hover { background: rgba(155, 108, 255, 0.06) !important; }
+
+.rounded-2xl {
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 640px) {
+  main { animation-duration: 0.3s; }
+  .rounded-2xl { border-radius: 1rem; }
+}
 
 button,
 input,
