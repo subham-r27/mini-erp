@@ -34,6 +34,11 @@ export interface DashboardSummary {
   };
 }
 
+export interface SalesPoint {
+  date: string;
+  sales: number;
+}
+
 export async function fetchDashboardSummary() {
   return get<DashboardSummary>("/dashboard/summary");
 }
@@ -63,4 +68,8 @@ export async function fetchLowStockProducts(limit = 10) {
   );
 
   return products.map(mapProduct);
+}
+
+export async function fetchSalesSeries(days = 30) {
+  return get<SalesPoint[]>("/dashboard/sales-series", { days });
 }

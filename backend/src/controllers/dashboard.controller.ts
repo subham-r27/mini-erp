@@ -9,6 +9,7 @@ import type {
     getRecentChallans,
     getRecentInvoices,
     getLowStockProducts,
+    getSalesSeries,
   } from "../services/dashboard.service.js";
   
   
@@ -156,3 +157,25 @@ import type {
       next(error);
     }
   }
+
+export async function salesSeries(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const rawDays = Number(req.query.days);
+    const days = Number.isInteger(rawDays) && rawDays > 0
+      ? Math.min(rawDays, 90)
+      : 30;
+
+    const data = await getSalesSeries(days);
+
+    res.status(200).json({
+      success: true,
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+}

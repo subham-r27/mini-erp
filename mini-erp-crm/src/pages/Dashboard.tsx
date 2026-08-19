@@ -11,6 +11,7 @@ import {
   fetchDashboardSummary,
   fetchLowStockProducts,
   fetchRecentChallans,
+  fetchSalesSeries,
 } from "../api/dashboard";
 import ErrorState from "../components/common/ErrorState";
 import LoadingState from "../components/common/LoadingState";
@@ -30,6 +31,7 @@ export default function Dashboard() {
   const [summary, setSummary] = useState<Awaited<ReturnType<typeof fetchDashboardSummary>> | null>(null);
   const [recentChallans, setRecentChallans] = useState<Challan[]>([]);
   const [lowStockProducts, setLowStockProducts] = useState<Product[]>([]);
+  const [salesSeries, setSalesSeries] = useState<Awaited<ReturnType<typeof fetchSalesSeries>>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -38,14 +40,16 @@ export default function Dashboard() {
     setError("");
 
     try {
-      const [summaryResult, challansResult, lowStockResult] = await Promise.all([
+      const [summaryResult, challansResult, lowStockResult, salesSeriesResult] = await Promise.all([
         fetchDashboardSummary(),
         fetchRecentChallans(),
         fetchLowStockProducts(),
+        fetchSalesSeries(Number(range)),
       ]);
       setSummary(summaryResult);
       setRecentChallans(challansResult);
       setLowStockProducts(lowStockResult);
+      setSalesSeries(salesSeriesResult);
     } catch (requestError) {
       setError(
         requestError instanceof ApiRequestError
@@ -55,7 +59,7 @@ export default function Dashboard() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [range]);
 
   useEffect(() => {
     void loadDashboard();
@@ -118,7 +122,7 @@ export default function Dashboard() {
               </div>
               <p className="text-xs text-slate-400">Last {range} days</p>
             </div>
-            <SalesChart />
+            <SalesChart data={salesSeries} />
           </div>
         </div>
 

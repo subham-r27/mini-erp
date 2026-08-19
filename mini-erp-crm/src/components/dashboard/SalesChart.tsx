@@ -8,13 +8,17 @@ import {
     YAxis,
   } from "recharts";
   
-  import { salesOverview } from "../../data/mockData";
+import type { SalesPoint } from "../../api/dashboard";
   
   function formatCurrency(value: number) {
     return `₹${(value / 1000).toFixed(0)}K`;
   }
   
-  export default function SalesChart() {
+  export default function SalesChart({
+    data,
+  }: {
+    data: SalesPoint[];
+  }) {
     return (
       <div className="h-[300px] w-full">
         <ResponsiveContainer
@@ -22,7 +26,7 @@ import {
           height="100%"
         >
           <LineChart
-            data={salesOverview}
+            data={data}
             margin={{
               top: 10,
               right: 10,

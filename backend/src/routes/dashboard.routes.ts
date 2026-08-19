@@ -11,6 +11,7 @@ import {
     recentChallans,
     recentInvoices,
     lowStock,
+    salesSeries,
   } from "../controllers/dashboard.controller.js";
   
   
@@ -44,6 +45,11 @@ import {
   router.get(
     "/low-stock",
     lowStock,
+  );
+
+  router.get(
+    "/sales-series",
+    salesSeries,
   );
   
   

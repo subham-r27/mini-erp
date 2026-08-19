@@ -243,3 +243,45 @@ export async function getRecentChallans(
       limit,
     );
   }
+
+  export async function getSalesSeries(days = 30) {
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+    start.setDate(start.getDate() - days + 1);
+
+    const invoices = await prisma.invoice.findMany({
+      where: {
+        status: {
+          in: ["ISSUED", "PAID"],
+        },
+        invoiceDate: {
+          gte: start,
+        },
+      },
+      select: {
+        invoiceDate: true,
+        totalAmount: true,
+      },
+      orderBy: {
+        invoiceDate: "asc",
+      },
+    });
+
+    const totals = new Map<string, number>();
+
+    for (const invoice of invoices) {
+      const date = invoice.invoiceDate.toISOString().slice(0, 10);
+      totals.set(date, (totals.get(date) || 0) + Number(invoice.totalAmount));
+    }
+
+    return Array.from({ length: days }, (_, index) => {
+      const date = new Date(start);
+      date.setDate(start.getDate() + index);
+      const key = date.toISOString().slice(0, 10);
+
+      return {
+        date: key.slice(5),
+        sales: totals.get(key) || 0,
+      };
+    });
+  }

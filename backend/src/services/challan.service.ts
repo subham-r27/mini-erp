@@ -62,6 +62,15 @@ import {
   
     return `CH-${year}${month}${day}-${random}`;
   }
+
+  function generateInvoiceNumber(): string {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const random = Math.floor(1000 + Math.random() * 9000);
+
+    return `INV-${year}${month}-${random}`;
+  }
   
   
   function validateItems(
@@ -1028,6 +1037,50 @@ import {
             },
           });
         }
+
+        const invoiceItems = challan.items.map((item) => {
+          const quantity = Number(item.quantity);
+          const unitPrice = Number(item.unitPriceSnapshot);
+          const taxRate = 18;
+          const lineSubtotal = quantity * unitPrice;
+          const taxAmount = lineSubtotal * (taxRate / 100);
+
+          return {
+            productId: item.productId,
+            quantity,
+            productNameSnapshot: item.productNameSnapshot,
+            skuSnapshot: item.skuSnapshot,
+            unitPriceSnapshot: item.unitPriceSnapshot,
+            taxRate,
+            taxAmount,
+            lineTotal: lineSubtotal + taxAmount,
+          };
+        });
+
+        const subtotal = invoiceItems.reduce(
+          (total, item) => total + Number(item.quantity) * Number(item.unitPriceSnapshot),
+          0,
+        );
+        const taxAmount = invoiceItems.reduce(
+          (total, item) => total + item.taxAmount,
+          0,
+        );
+
+        await tx.invoice.create({
+          data: {
+            invoiceNumber: generateInvoiceNumber(),
+            customerId: challan.customerId,
+            challanId: challan.id,
+            status: "ISSUED",
+            subtotal,
+            taxAmount,
+            totalAmount: subtotal + taxAmount,
+            createdById: confirmedById,
+            items: {
+              create: invoiceItems,
+            },
+          },
+        });
   
   
         /*
